@@ -20,7 +20,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_treeCtrl1 = new wxTreeCtrl( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE );
+	m_treeCtrl1 = new wxTreeCtrl( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT );
 	bSizer6->Add( m_treeCtrl1, 1, wxALL|wxEXPAND, 5 );
 	
 	m_button4 = new wxButton( m_panel3, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
