@@ -46,6 +46,7 @@ public:
 	// initialization (doing it here and not in the ctor allows to have an error
 	// return: if OnInit() returns false, the application terminates)
 	virtual bool OnInit();
+
 };
 
 

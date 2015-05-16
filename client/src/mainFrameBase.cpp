@@ -5,6 +5,8 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
+#include "wx/wxprec.h"
+
 #include "mainFrameBase.h"
 
 ///////////////////////////////////////////////////////////////////////////
@@ -18,13 +20,39 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	m_panel3 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer6;
-	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
+	bSizer6 = new wxBoxSizer( wxVERTICAL );
 	
-	m_treeCtrl1 = new wxTreeCtrl( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT );
-	bSizer6->Add( m_treeCtrl1, 1, wxALL|wxEXPAND, 5 );
+	m_cmdBox = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
+	bSizer6->Add( m_cmdBox, 1, wxEXPAND|wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_button4 = new wxButton( m_panel3, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer6->Add( m_button4, 0, wxALL, 5 );
+	wxBoxSizer* bSizer3;
+	bSizer3 = new wxBoxSizer( wxHORIZONTAL );
+	
+	wxBoxSizer* bSizer61;
+	bSizer61 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_hostname = new wxTextCtrl( m_panel3, wxID_ANY, wxT("localhost"), wxDefaultPosition, wxSize( 200,-1 ), 0 );
+	bSizer61->Add( m_hostname, 0, wxALL|wxALIGN_CENTER_VERTICAL|wxEXPAND, 5 );
+	
+	m_btnConnect = new wxButton( m_panel3, wxID_ANY, wxT("Connect"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer61->Add( m_btnConnect, 0, wxALIGN_RIGHT|wxEXPAND|wxALL, 5 );
+	
+	
+	bSizer3->Add( bSizer61, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer51;
+	bSizer51 = new wxBoxSizer( wxVERTICAL );
+	
+	m_btnSend = new wxButton( m_panel3, wxID_ANY, wxT("Send"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_btnSend->Enable( false );
+	
+	bSizer51->Add( m_btnSend, 0, wxALL|wxALIGN_RIGHT, 5 );
+	
+	
+	bSizer3->Add( bSizer51, 1, wxEXPAND, 5 );
+	
+	
+	bSizer6->Add( bSizer3, 0, wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	
 	m_panel3->SetSizer( bSizer6 );
@@ -39,12 +67,14 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::ButtonClk ), NULL, this );
+	m_btnConnect->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnectToServer ), NULL, this );
+	m_btnSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::SendClk ), NULL, this );
 }
 
 MyFrame1Base::~MyFrame1Base()
 {
 	// Disconnect Events
-	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::ButtonClk ), NULL, this );
+	m_btnConnect->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnectToServer ), NULL, this );
+	m_btnSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::SendClk ), NULL, this );
 	
 }

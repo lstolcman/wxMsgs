@@ -10,12 +10,12 @@
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
-#include <wx/treectrl.h>
+#include <wx/string.h>
+#include <wx/textctrl.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/string.h>
 #include <wx/button.h>
 #include <wx/sizer.h>
 #include <wx/panel.h>
@@ -33,16 +33,19 @@ class MyFrame1Base : public wxFrame
 	
 	protected:
 		wxPanel* m_panel3;
-		wxTreeCtrl* m_treeCtrl1;
-		wxButton* m_button4;
+		wxTextCtrl* m_cmdBox;
+		wxTextCtrl* m_hostname;
+		wxButton* m_btnConnect;
+		wxButton* m_btnSend;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void ButtonClk( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnConnectToServer( wxCommandEvent& event ) { event.Skip(); }
+		virtual void SendClk( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		MyFrame1Base( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("zzz"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1Base( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Client"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~MyFrame1Base();
 	
