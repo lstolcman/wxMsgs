@@ -31,6 +31,8 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	m_server->SetEventHandler(*this, SERVER_ID);
 	m_server->SetNotify(wxSOCKET_CONNECTION_FLAG);
 	m_server->Notify(true);
+
+	clients = 0;
 }
 
 
@@ -52,7 +54,11 @@ void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 	sock->SetNotify(wxSOCKET_INPUT_FLAG | wxSOCKET_LOST_FLAG);
 	sock->Notify(true);
 
-	m_cmdBox->AppendText("\n" + wxDateTime::Now().Format("%X") + " Accepted incoming connection.\n");
+	m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Accepted incoming connection.\n");
+
+	m_clConn->GetLabelText().ToULong(&clients);
+	++clients;
+	m_clConn->SetLabelText(wxString::Format("%i", clients));
 }
 
 
@@ -71,11 +77,11 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 		// Read the data
 		sock->Read(buf, sizeof(buf));
 
-		m_cmdBox->AppendText("Received from client: " + wxString(buf) + "\n");
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + "Received from client: " + wxString(buf) + "\n");
 		// Write it back
 		sock->Write(buf, sizeof(buf));
 
-		m_cmdBox->AppendText("Wrote string back to client.\n");
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + "Wrote string back to client.\n");
 
 		// We are done with the socket, destroy it
 		//sock->Destroy();
@@ -84,6 +90,12 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	}
 	case wxSOCKET_LOST:
 	{
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_LOST\n");
+
+		m_clConn->GetLabelText().ToULong(&clients);
+		--clients;
+		m_clConn->SetLabelText(wxString::Format("%i", clients));
+
 		sock->Destroy();
 		break;
 	}

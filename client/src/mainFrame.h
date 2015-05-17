@@ -5,6 +5,7 @@
 #include <wx/socket.h>
 #include <wx/msgdlg.h>
 #include <wx/time.h>
+#include <wx/regex.h>
 
 
 class mainFrame : public MyFrame1Base

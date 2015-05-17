@@ -21,6 +21,14 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	Socket->SetNotify(wxSOCKET_CONNECTION_FLAG | wxSOCKET_INPUT_FLAG | wxSOCKET_LOST_FLAG);
 	Socket->Notify(true);
 
+
+	m_cmdBox->Clear();
+	wxRegEx r;
+	r.Compile("Start");
+	wxString s = "start";
+	if (r.Matches(s))
+	m_cmdBox->AppendText(r.GetMatch(s, 0));
+
 }
 
 
@@ -64,6 +72,12 @@ void mainFrame::OnConnectToServer(wxCommandEvent &event)
 	{
 		Socket->Connect(addr, true);
 	}
+	else
+	{
+		Socket->Close();
+		m_btnSend->Disable();
+		m_btnConnect->SetLabelText("Connect");
+	}
 
 	m_cmdBox->Clear();
 
@@ -89,8 +103,9 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 	case wxSOCKET_CONNECTION:
 	{
-		m_btnSend->Enable();
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_CONNECTION\n");
+		m_btnSend->Enable();
+		m_btnConnect->SetLabelText("Disconnect");
 		break;
 	}
 	case wxSOCKET_INPUT:
@@ -104,7 +119,6 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	case wxSOCKET_LOST:
 	{
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_LOST\n");
-		m_btnSend->Disable();
 		break;
 	}
 	}

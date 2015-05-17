@@ -22,6 +22,8 @@ private:
 
 	wxIPV4address addr;
 
+	unsigned long clients;
+
 
 };
 
