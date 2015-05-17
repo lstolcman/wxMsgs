@@ -22,7 +22,6 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	Socket->Notify(true);
 
 
-	m_cmdBox->Clear();
 	wxRegEx r;
 	r.Compile("Start");
 	wxString s = "start";
@@ -79,7 +78,6 @@ void mainFrame::OnConnectToServer(wxCommandEvent &event)
 		m_btnConnect->SetLabelText("Connect");
 	}
 
-	m_cmdBox->Clear();
 
 	if (Socket->IsClosed()) m_cmdBox->AppendText("isClosed\n");
 	if (Socket->IsConnected()) m_cmdBox->AppendText("isConnected\n");

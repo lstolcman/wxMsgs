@@ -46,6 +46,13 @@ mainFrame::~mainFrame()
 
 void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 {
+	if (clients >= 1)
+	{
+		wxMessageBox(">1");
+		m_server->Destroy();
+		return;
+	}
+
 	// Accept the new connection and get the socket pointer
 	wxSocketBase* sock = m_server->Accept(false);
 
