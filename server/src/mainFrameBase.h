@@ -16,7 +16,7 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/button.h>
+#include <wx/stattext.h>
 #include <wx/sizer.h>
 #include <wx/panel.h>
 #include <wx/frame.h>
@@ -34,11 +34,8 @@ class MyFrame1Base : public wxFrame
 	protected:
 		wxPanel* m_panel3;
 		wxTextCtrl* m_cmdBox;
-		wxButton* m_btnStart;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void StartClk( wxCommandEvent& event ) { event.Skip(); }
-		
+		wxStaticText* m_staticText1;
+		wxStaticText* m_clConn;
 	
 	public:
 		

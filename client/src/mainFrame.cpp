@@ -20,6 +20,7 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	Socket->SetEventHandler(*this, SOCKET_ID);
 	Socket->SetNotify(wxSOCKET_CONNECTION_FLAG | wxSOCKET_INPUT_FLAG | wxSOCKET_LOST_FLAG);
 	Socket->Notify(true);
+
 }
 
 
@@ -27,7 +28,6 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 mainFrame::~mainFrame()
 {
 	delete Socket;
-
 }
 
 
@@ -47,7 +47,10 @@ void mainFrame::SendClk(wxCommandEvent &event)
 		// Send the characters to the server
 
 		strcpy(buf, "conn\n");
-		Socket->Write(buf, sizeof(buf));
+		//Socket->Write(buf, sizeof(buf));
+		wxString s = "test str";
+		Socket->Write(s.mbc_str(), wxStrlen(s)+1);
+		//Socket->Close();
 	}
 
 }
@@ -60,8 +63,15 @@ void mainFrame::OnConnectToServer(wxCommandEvent &event)
 	if (Socket->IsDisconnected())
 	{
 		Socket->Connect(addr, true);
-		m_btnSend->Enable(true);
 	}
+
+	m_cmdBox->Clear();
+
+	if (Socket->IsClosed()) m_cmdBox->AppendText("isClosed\n");
+	if (Socket->IsConnected()) m_cmdBox->AppendText("isConnected\n");
+	if (Socket->IsDisconnected()) m_cmdBox->AppendText("isDisconnected\n");
+	if (Socket->IsInitialized()) m_cmdBox->AppendText("isInitialized\n");
+	if (Socket->IsOk()) m_cmdBox->AppendText("isOk\n");
 
 
 }
@@ -79,17 +89,22 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 	case wxSOCKET_CONNECTION:
 	{
+		m_btnSend->Enable();
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_CONNECTION\n");
 		break;
 	}
 	case wxSOCKET_INPUT:
 	{
+		sock->Read(buf, sizeof(buf));
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_INPUT:"+wxString(buf)+"\n");
 		break;
 	}
 
 	// The server hangs up after sending the data
 	case wxSOCKET_LOST:
 	{
-		m_btnSend->Enable(false);
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_LOST\n");
+		m_btnSend->Disable();
 		break;
 	}
 	}

@@ -22,17 +22,22 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxVERTICAL );
 	
-	m_cmdBox = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
+	m_cmdBox = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
 	bSizer6->Add( m_cmdBox, 1, wxEXPAND|wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	wxBoxSizer* bSizer3;
-	bSizer3 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_btnStart = new wxButton( m_panel3, wxID_ANY, wxT("Start server"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer3->Add( m_btnStart, 0, wxALL|wxALIGN_RIGHT, 5 );
+	m_staticText1 = new wxStaticText( m_panel3, wxID_ANY, wxT("Podlaczono klientow:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText1->Wrap( -1 );
+	bSizer4->Add( m_staticText1, 0, wxALL, 5 );
+	
+	m_clConn = new wxStaticText( m_panel3, wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_clConn->Wrap( -1 );
+	bSizer4->Add( m_clConn, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
 	
-	bSizer6->Add( bSizer3, 0, wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer6->Add( bSizer4, 0, 0, 5 );
 	
 	
 	m_panel3->SetSizer( bSizer6 );
@@ -45,14 +50,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	this->Layout();
 	
 	this->Centre( wxBOTH );
-	
-	// Connect Events
-	m_btnStart->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::StartClk ), NULL, this );
 }
 
 MyFrame1Base::~MyFrame1Base()
 {
-	// Disconnect Events
-	m_btnStart->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::StartClk ), NULL, this );
-	
 }

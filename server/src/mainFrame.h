@@ -12,14 +12,15 @@ public:
 	~mainFrame();
 
 
-	void OnServerEvent(wxSocketEvent &event);
+	void OnConnectionEvent(wxSocketEvent &event);
 	void OnSocketEvent(wxSocketEvent &event);
 
-	void StartClk(wxCommandEvent &event);
 
 
 private:
 	wxSocketServer *m_server;
+
+	wxIPV4address addr;
 
 
 };
