@@ -34,7 +34,7 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 
 mainFrame::~mainFrame()
 {
-	delete Socket;
+	Socket->Destroy();
 }
 
 
@@ -109,7 +109,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	case wxSOCKET_INPUT:
 	{
 		sock->Read(buf, sizeof(buf));
-		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_INPUT:"+wxString(buf)+"\n");
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_INPUT: "+wxString(buf)+"\n");
 		break;
 	}
 
