@@ -38,8 +38,11 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_hostname = new wxTextCtrl( m_panel3, wxID_ANY, wxT("localhost"), wxDefaultPosition, wxSize( 200,-1 ), 0 );
 	bSizer61->Add( m_hostname, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
+	
+	bSizer61->Add( 0, 0, 1, wxEXPAND, 5 );
+	
 	m_btnConnect = new wxButton( m_panel3, wxID_ANY, wxT("Polacz"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer61->Add( m_btnConnect, 1, wxALIGN_RIGHT|wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer61->Add( m_btnConnect, 0, wxALIGN_RIGHT|wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
 	sbSizer5->Add( bSizer61, 0, wxEXPAND, 5 );
@@ -60,6 +63,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	bSizer15->Add( m_textCtrl3, 1, wxALL|wxEXPAND, 5 );
 	
 	m_btnGenerate = new wxButton( m_panel3, wxID_ANY, wxT("Generuj"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_btnGenerate->Enable( false );
+	
 	bSizer15->Add( m_btnGenerate, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -68,21 +73,57 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer151;
 	bSizer151 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_checkBox2 = new wxCheckBox( m_panel3, wxID_ANY, wxT("CRC"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer151->Add( m_checkBox2, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	wxBoxSizer* bSizer30;
+	bSizer30 = new wxBoxSizer( wxVERTICAL );
 	
-	m_checkBox3 = new wxCheckBox( m_panel3, wxID_ANY, wxT("Szyfrowanie"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer151->Add( m_checkBox3, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	m_setEnc = new wxCheckBox( m_panel3, wxID_ANY, wxT("Szyfrowanie"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_setEnc->Enable( false );
+	
+	bSizer30->Add( m_setEnc, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	
+	m_setCRC = new wxCheckBox( m_panel3, wxID_ANY, wxT("CRC"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_setCRC->Enable( false );
+	
+	bSizer30->Add( m_setCRC, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	
+	
+	bSizer151->Add( bSizer30, 0, 0, 5 );
 	
 	
 	bSizer151->Add( 0, 0, 1, wxEXPAND, 5 );
 	
+	wxBoxSizer* bSizer32;
+	bSizer32 = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer31;
+	bSizer31 = new wxBoxSizer( wxHORIZONTAL );
+	
 	m_staticText2 = new wxStaticText( m_panel3, wxID_ANY, wxT("Klucz szyfrujacy:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText2->Wrap( -1 );
-	bSizer151->Add( m_staticText2, 0, wxALL, 5 );
+	bSizer31->Add( m_staticText2, 0, wxALL, 5 );
 	
 	m_encKey = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 26, 0 );
-	bSizer151->Add( m_encKey, 0, wxBOTTOM|wxRIGHT|wxLEFT|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer31->Add( m_encKey, 0, wxALIGN_CENTER_VERTICAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
+	
+	
+	bSizer32->Add( bSizer31, 0, 0, 5 );
+	
+	wxBoxSizer* bSizer33;
+	bSizer33 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_staticText5 = new wxStaticText( m_panel3, wxID_ANY, wxT("Max dlugosc pola danych w bajtach:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText5->Wrap( -1 );
+	bSizer33->Add( m_staticText5, 0, wxALL, 5 );
+	
+	m_frameLen = new wxStaticText( m_panel3, wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_frameLen->Wrap( -1 );
+	bSizer33->Add( m_frameLen, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
+	
+	
+	bSizer32->Add( bSizer33, 1, wxEXPAND, 5 );
+	
+	
+	bSizer151->Add( bSizer32, 1, wxEXPAND, 5 );
 	
 	
 	bSizer14->Add( bSizer151, 0, wxEXPAND, 5 );
@@ -90,8 +131,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer17;
 	bSizer17 = new wxBoxSizer( wxVERTICAL );
 	
-	m_treeCtrl2 = new wxTreeCtrl( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE );
-	bSizer17->Add( m_treeCtrl2, 1, wxEXPAND|wxRIGHT|wxLEFT, 5 );
+	m_packetTree = new wxTreeCtrl( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT );
+	bSizer17->Add( m_packetTree, 1, wxEXPAND|wxRIGHT|wxLEFT, 5 );
 	
 	
 	bSizer14->Add( bSizer17, 1, wxEXPAND, 5 );
@@ -165,13 +206,27 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	bSizer14->Add( bSizer18, 0, wxEXPAND, 5 );
 	
+	m_textCtrl17 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer14->Add( m_textCtrl17, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
+	
 	wxBoxSizer* bSizer16;
 	bSizer16 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_btnSend = new wxButton( m_panel3, wxID_ANY, wxT("Wyslij"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_btnSend = new wxButton( m_panel3, wxID_ANY, wxT("Wyslij pojedynczo"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_btnSend->Enable( false );
 	
 	bSizer16->Add( m_btnSend, 0, wxALIGN_RIGHT|wxALL, 5 );
+	
+	m_btnSendAll = new wxButton( m_panel3, wxID_ANY, wxT("Wyslij wszystko"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_btnSendAll->Enable( false );
+	
+	bSizer16->Add( m_btnSendAll, 0, wxALL, 5 );
+	
+	
+	bSizer16->Add( 0, 0, 3, wxEXPAND, 5 );
+	
+	m_clkClear = new wxButton( m_panel3, wxID_ANY, wxT("Wyczysc okno pakietow"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer16->Add( m_clkClear, 1, wxALL, 5 );
 	
 	
 	bSizer14->Add( bSizer16, 0, 0, 5 );
@@ -198,6 +253,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_btnConnect->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
 	m_btnSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
+	m_btnSendAll->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
 }
 
 MyFrame1Base::~MyFrame1Base()
@@ -206,5 +262,6 @@ MyFrame1Base::~MyFrame1Base()
 	m_btnConnect->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
 	m_btnSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
+	m_btnSendAll->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
 	
 }

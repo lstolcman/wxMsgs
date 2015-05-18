@@ -26,6 +26,7 @@ public:
 private:
 	wxSocketClient* Socket;
 	wxIPV4address addr;
+	wxTreeItemId  treeRoot;
 
 };
 

@@ -28,6 +28,16 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	if (r.Matches(s))
 	m_cmdBox->AppendText(r.GetMatch(s, 0));
 
+	treeRoot = m_packetTree->AddRoot("");
+	m_packetTree->AppendItem(treeRoot, "asd");
+	m_packetTree->AppendItem(treeRoot, "asd");
+	m_packetTree->AppendItem(treeRoot, "asd");
+	m_packetTree->AppendItem(treeRoot, "asd");
+	m_packetTree->AppendItem(treeRoot, "asd");
+
+	m_setEnc->Set3StateValue(wxCHK_CHECKED);
+	m_setCRC->Set3StateValue(wxCHK_CHECKED);
+
 }
 
 
@@ -87,6 +97,7 @@ void mainFrame::OnConnect(wxCommandEvent &event)
 		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 		Socket->Close();
 		m_btnSend->Disable();
+		m_btnGenerate->Disable();
 		m_btnConnect->SetLabelText("Polacz");
 	}
 
@@ -115,6 +126,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_CONNECTION\n");
 		m_btnSend->Enable();
+		m_btnGenerate->Enable();
 		m_btnConnect->SetLabelText("Rozlacz");
 		break;
 	}
@@ -129,6 +141,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	case wxSOCKET_LOST:
 	{
 		m_btnSend->Disable();
+		m_btnGenerate->Disable();
 		m_btnConnect->SetLabelText("Polacz");
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_LOST\n");
 		break;

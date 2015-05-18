@@ -44,11 +44,13 @@ class MyFrame1Base : public wxFrame
 		wxButton* m_btnConnect;
 		wxTextCtrl* m_textCtrl3;
 		wxButton* m_btnGenerate;
-		wxCheckBox* m_checkBox2;
-		wxCheckBox* m_checkBox3;
+		wxCheckBox* m_setEnc;
+		wxCheckBox* m_setCRC;
 		wxStaticText* m_staticText2;
 		wxSpinCtrl* m_encKey;
-		wxTreeCtrl* m_treeCtrl2;
+		wxStaticText* m_staticText5;
+		wxStaticText* m_frameLen;
+		wxTreeCtrl* m_packetTree;
 		wxTextCtrl* m_textCtrl4;
 		wxTextCtrl* m_textCtrl7;
 		wxTextCtrl* m_textCtrl6;
@@ -56,7 +58,10 @@ class MyFrame1Base : public wxFrame
 		wxTextCtrl* m_textCtrl51;
 		wxTextCtrl* m_textCtrl511;
 		wxTextCtrl* m_textCtrl512;
+		wxTextCtrl* m_textCtrl17;
 		wxButton* m_btnSend;
+		wxButton* m_btnSendAll;
+		wxButton* m_clkClear;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnConnect( wxCommandEvent& event ) { event.Skip(); }

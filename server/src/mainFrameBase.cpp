@@ -31,7 +31,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_setCRC = new wxCheckBox( m_panel3, wxID_ANY, wxT("CRC"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( m_setCRC, 1, wxALL, 5 );
 	
-	m_staticText1 = new wxStaticText( m_panel3, wxID_ANY, wxT("Max dlugosc calej ramki w bajtach:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText1 = new wxStaticText( m_panel3, wxID_ANY, wxT("Max dlugosc pola danych w bajtach:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText1->Wrap( -1 );
 	bSizer3->Add( m_staticText1, 0, wxALL, 5 );
 	

@@ -99,13 +99,12 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 	case wxSOCKET_INPUT:
 	{
-		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_INPUT\n");
 		char buf[10];
 
 		// Read the data
 		sock->Read(buf, sizeof(buf));
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_INPUT: " + wxString(buf) + "\n");
 
-		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Received: " + wxString(buf) + "\n");
 		// Write it back
 		sock->Write(buf, sizeof(buf));
 
