@@ -15,6 +15,9 @@ public:
 	void OnConnectionEvent(wxSocketEvent &event);
 	void OnSocketEvent(wxSocketEvent &event);
 
+	void setFrameLen(wxCommandEvent& event);
+	void setCRC(wxCommandEvent& event);
+	void setEncryption(wxCommandEvent& event);
 
 
 private:
@@ -23,6 +26,9 @@ private:
 	wxIPV4address addr;
 
 	unsigned long clients;
+
+	bool encryption;
+	bool crc;
 
 
 };

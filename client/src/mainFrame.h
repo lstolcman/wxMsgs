@@ -15,10 +15,10 @@ public:
 	~mainFrame();
 
 
-	void OnConnectToServer(wxCommandEvent &event);
+	void OnConnect(wxCommandEvent &event);
 	void OnSocketEvent(wxSocketEvent &event);
 
-	void SendClk(wxCommandEvent &event);
+	void OnSend(wxCommandEvent &event);
 
 
 private:

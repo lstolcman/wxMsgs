@@ -16,7 +16,9 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
+#include <wx/checkbox.h>
 #include <wx/stattext.h>
+#include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/panel.h>
 #include <wx/frame.h>
@@ -34,8 +36,18 @@ class MyFrame1Base : public wxFrame
 	protected:
 		wxPanel* m_panel3;
 		wxTextCtrl* m_cmdBox;
+		wxCheckBox* m_setCRC;
 		wxStaticText* m_staticText1;
-		wxStaticText* m_clConn;
+		wxSpinCtrl* m_setFrameLen;
+		wxCheckBox* m_setEncryption;
+		wxStaticText* m_staticText7;
+		wxTextCtrl* m_encKey;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void setCRC( wxCommandEvent& event ) { event.Skip(); }
+		virtual void setFrameLen( wxCommandEvent& event ) { event.Skip(); }
+		virtual void setEncryption( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		

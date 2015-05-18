@@ -38,7 +38,7 @@ mainFrame::~mainFrame()
 }
 
 
-void mainFrame::SendClk(wxCommandEvent &event)
+void mainFrame::OnSend(wxCommandEvent &event)
 {
 
 	if (Socket && Socket->IsConnected())
@@ -62,7 +62,7 @@ void mainFrame::SendClk(wxCommandEvent &event)
 
 }
 
-void mainFrame::OnConnectToServer(wxCommandEvent &event)
+void mainFrame::OnConnect(wxCommandEvent &event)
 {
 	addr.Hostname(m_hostname->GetValue());
 	addr.Service(3000);
@@ -70,9 +70,13 @@ void mainFrame::OnConnectToServer(wxCommandEvent &event)
 	if (Socket->IsDisconnected())
 	{
 		Socket->Connect(addr, true);
+		wxString s = "P";
+		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 	}
 	else
 	{
+		wxString s = "R";
+		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 		Socket->Close();
 		m_btnSend->Disable();
 		m_btnConnect->SetLabelText("Connect");
@@ -116,6 +120,8 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	// The server hangs up after sending the data
 	case wxSOCKET_LOST:
 	{
+		m_btnSend->Disable();
+		m_btnConnect->SetLabelText("Connect");
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_LOST\n");
 		break;
 	}

@@ -33,6 +33,15 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	m_server->Notify(true);
 
 	clients = 0;
+
+	encryption = true;
+	crc = true;
+
+
+
+
+	m_setEncryption->SetValue(encryption);
+	m_setCRC->SetValue(crc);
 }
 
 
@@ -40,12 +49,26 @@ mainFrame::~mainFrame()
 {
 }
 
+void mainFrame::setFrameLen(wxCommandEvent& event)
+{
+	m_setFrameLen->SetValue(m_setFrameLen->GetValue());
+}
 
+
+void mainFrame::setCRC(wxCommandEvent& event)
+{
+	crc = m_setCRC->GetValue();
+}
+
+void mainFrame::setEncryption(wxCommandEvent& event)
+{
+	encryption = m_setEncryption->GetValue();
+}
 
 
 void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 {
-	m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_CONNECTION\n");
+	m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_CONNECTION\n");
 	if (clients >= 1)
 	{
 		wxMessageBox(">1");
@@ -63,9 +86,11 @@ void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 
 	m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Accepted incoming connection.\n");
 
+	/*
 	m_clConn->GetLabelText().ToULong(&clients);
 	++clients;
 	m_clConn->SetLabelText(wxString::Format("%i", clients));
+	*/
 }
 
 
@@ -89,7 +114,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 		// Write it back
 		sock->Write(buf, sizeof(buf));
 
-		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Sent: "+wxString(buf)+"\n");
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Sent: " + wxString(buf) + "\n");
 
 		// We are done with the socket, destroy it
 		//sock->Destroy();
@@ -100,9 +125,11 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_LOST\n");
 
+		/*
 		m_clConn->GetLabelText().ToULong(&clients);
 		--clients;
 		m_clConn->SetLabelText(wxString::Format("%i", clients));
+		*/
 
 		sock->Destroy();
 		break;

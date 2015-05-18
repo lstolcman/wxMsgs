@@ -19,30 +19,48 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	bSizer5 = new wxBoxSizer( wxVERTICAL );
 	
 	m_panel3 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* bSizer6;
-	bSizer6 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizer51;
+	bSizer51 = new wxBoxSizer( wxVERTICAL );
 	
 	m_cmdBox = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
-	bSizer6->Add( m_cmdBox, 1, wxEXPAND|wxTOP|wxRIGHT|wxLEFT, 5 );
+	bSizer51->Add( m_cmdBox, 1, wxEXPAND|wxALL, 5 );
 	
-	wxBoxSizer* bSizer4;
-	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* bSizer3;
+	bSizer3 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticText1 = new wxStaticText( m_panel3, wxID_ANY, wxT("Podlaczono klientow:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_setCRC = new wxCheckBox( m_panel3, wxID_ANY, wxT("CRC"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer3->Add( m_setCRC, 1, wxALL, 5 );
+	
+	m_staticText1 = new wxStaticText( m_panel3, wxID_ANY, wxT("Max dlugosc calej ramki w bajtach:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText1->Wrap( -1 );
-	bSizer4->Add( m_staticText1, 0, wxALL, 5 );
+	bSizer3->Add( m_staticText1, 0, wxALL, 5 );
 	
-	m_clConn = new wxStaticText( m_panel3, wxID_ANY, wxT("0"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_clConn->Wrap( -1 );
-	bSizer4->Add( m_clConn, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
-	
-	
-	bSizer6->Add( bSizer4, 0, 0, 5 );
+	m_setFrameLen = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 5, 20, 10 );
+	bSizer3->Add( m_setFrameLen, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
-	m_panel3->SetSizer( bSizer6 );
+	bSizer51->Add( bSizer3, 0, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer16;
+	bSizer16 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_setEncryption = new wxCheckBox( m_panel3, wxID_ANY, wxT("Szyfrowanie"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer16->Add( m_setEncryption, 1, wxALL, 5 );
+	
+	m_staticText7 = new wxStaticText( m_panel3, wxID_ANY, wxT("Klucz szyfrujacy:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7->Wrap( -1 );
+	bSizer16->Add( m_staticText7, 0, wxALL, 5 );
+	
+	m_encKey = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer16->Add( m_encKey, 1, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
+	
+	
+	bSizer51->Add( bSizer16, 0, wxEXPAND, 5 );
+	
+	
+	m_panel3->SetSizer( bSizer51 );
 	m_panel3->Layout();
-	bSizer6->Fit( m_panel3 );
+	bSizer51->Fit( m_panel3 );
 	bSizer5->Add( m_panel3, 1, wxEXPAND, 5 );
 	
 	
@@ -50,8 +68,18 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	this->Layout();
 	
 	this->Centre( wxBOTH );
+	
+	// Connect Events
+	m_setCRC->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setCRC ), NULL, this );
+	m_setFrameLen->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::setFrameLen ), NULL, this );
+	m_setEncryption->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setEncryption ), NULL, this );
 }
 
 MyFrame1Base::~MyFrame1Base()
 {
+	// Disconnect Events
+	m_setCRC->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setCRC ), NULL, this );
+	m_setFrameLen->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::setFrameLen ), NULL, this );
+	m_setEncryption->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setEncryption ), NULL, this );
+	
 }
