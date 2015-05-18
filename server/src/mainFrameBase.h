@@ -41,7 +41,9 @@ class MyFrame1Base : public wxFrame
 		wxSpinCtrl* m_setFrameLen;
 		wxCheckBox* m_setEncryption;
 		wxStaticText* m_staticText7;
-		wxTextCtrl* m_encKey;
+		wxSpinCtrl* m_decKey;
+		wxStaticText* m_staticText10;
+		wxStaticText* m_clConn;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void setCRC( wxCommandEvent& event ) { event.Skip(); }
@@ -51,7 +53,7 @@ class MyFrame1Base : public wxFrame
 	
 	public:
 		
-		MyFrame1Base( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Server"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1Base( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Serwer"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~MyFrame1Base();
 	

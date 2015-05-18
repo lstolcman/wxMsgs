@@ -37,6 +37,14 @@ mainFrame::~mainFrame()
 	Socket->Destroy();
 }
 
+void mainFrame::clkGenerate(wxCommandEvent &event)
+{
+
+
+
+
+
+}
 
 void mainFrame::OnSend(wxCommandEvent &event)
 {
@@ -79,7 +87,7 @@ void mainFrame::OnConnect(wxCommandEvent &event)
 		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 		Socket->Close();
 		m_btnSend->Disable();
-		m_btnConnect->SetLabelText("Connect");
+		m_btnConnect->SetLabelText("Polacz");
 	}
 
 
@@ -107,7 +115,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_CONNECTION\n");
 		m_btnSend->Enable();
-		m_btnConnect->SetLabelText("Disconnect");
+		m_btnConnect->SetLabelText("Rozlacz");
 		break;
 	}
 	case wxSOCKET_INPUT:
@@ -121,7 +129,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	case wxSOCKET_LOST:
 	{
 		m_btnSend->Disable();
-		m_btnConnect->SetLabelText("Connect");
+		m_btnConnect->SetLabelText("Polacz");
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X")+" wxSOCKET_LOST\n");
 		break;
 	}

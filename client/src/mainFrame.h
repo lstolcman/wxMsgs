@@ -20,6 +20,8 @@ public:
 
 	void OnSend(wxCommandEvent &event);
 
+	void clkGenerate(wxCommandEvent &event);
+
 
 private:
 	wxSocketClient* Socket;

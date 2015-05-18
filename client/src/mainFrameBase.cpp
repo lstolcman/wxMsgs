@@ -23,10 +23,10 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	bSizer10 = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxStaticBoxSizer* sbSizer5;
-	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Command Box") ), wxVERTICAL );
+	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxEmptyString ), wxVERTICAL );
 	
 	m_cmdBox = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
-	sbSizer5->Add( m_cmdBox, 1, wxEXPAND|wxRIGHT|wxLEFT, 5 );
+	sbSizer5->Add( m_cmdBox, 1, wxEXPAND|wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	wxBoxSizer* bSizer61;
 	bSizer61 = new wxBoxSizer( wxHORIZONTAL );
@@ -38,7 +38,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_hostname = new wxTextCtrl( m_panel3, wxID_ANY, wxT("localhost"), wxDefaultPosition, wxSize( 200,-1 ), 0 );
 	bSizer61->Add( m_hostname, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
-	m_btnConnect = new wxButton( m_panel3, wxID_ANY, wxT("Connect"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_btnConnect = new wxButton( m_panel3, wxID_ANY, wxT("Polacz"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer61->Add( m_btnConnect, 1, wxALIGN_RIGHT|wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	
@@ -48,7 +48,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	bSizer10->Add( sbSizer5, 1, wxEXPAND|wxALL, 5 );
 	
 	wxStaticBoxSizer* sbSizer6;
-	sbSizer6 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Packets") ), wxVERTICAL );
+	sbSizer6 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxEmptyString ), wxVERTICAL );
 	
 	wxBoxSizer* bSizer14;
 	bSizer14 = new wxBoxSizer( wxVERTICAL );
@@ -64,6 +64,28 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	
 	bSizer14->Add( bSizer15, 0, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer151;
+	bSizer151 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_checkBox2 = new wxCheckBox( m_panel3, wxID_ANY, wxT("CRC"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer151->Add( m_checkBox2, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	
+	m_checkBox3 = new wxCheckBox( m_panel3, wxID_ANY, wxT("Szyfrowanie"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer151->Add( m_checkBox3, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	
+	
+	bSizer151->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_staticText2 = new wxStaticText( m_panel3, wxID_ANY, wxT("Klucz szyfrujacy:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText2->Wrap( -1 );
+	bSizer151->Add( m_staticText2, 0, wxALL, 5 );
+	
+	m_encKey = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 26, 0 );
+	bSizer151->Add( m_encKey, 0, wxBOTTOM|wxRIGHT|wxLEFT|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizer14->Add( bSizer151, 0, wxEXPAND, 5 );
 	
 	wxBoxSizer* bSizer17;
 	bSizer17 = new wxBoxSizer( wxVERTICAL );
@@ -146,7 +168,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer16;
 	bSizer16 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_btnSend = new wxButton( m_panel3, wxID_ANY, wxT("Send"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_btnSend = new wxButton( m_panel3, wxID_ANY, wxT("Wyslij"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_btnSend->Enable( false );
 	
 	bSizer16->Add( m_btnSend, 0, wxALIGN_RIGHT|wxALL, 5 );

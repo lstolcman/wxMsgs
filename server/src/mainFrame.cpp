@@ -38,8 +38,6 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	crc = true;
 
 
-
-
 	m_setEncryption->SetValue(encryption);
 	m_setCRC->SetValue(crc);
 }
@@ -71,7 +69,6 @@ void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 	m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_CONNECTION\n");
 	if (clients >= 1)
 	{
-		wxMessageBox(">1");
 		m_server->Destroy();
 		return;
 	}
@@ -86,11 +83,9 @@ void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 
 	m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Accepted incoming connection.\n");
 
-	/*
 	m_clConn->GetLabelText().ToULong(&clients);
 	++clients;
 	m_clConn->SetLabelText(wxString::Format("%i", clients));
-	*/
 }
 
 
@@ -125,11 +120,9 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_LOST\n");
 
-		/*
 		m_clConn->GetLabelText().ToULong(&clients);
 		--clients;
 		m_clConn->SetLabelText(wxString::Format("%i", clients));
-		*/
 
 		sock->Destroy();
 		break;

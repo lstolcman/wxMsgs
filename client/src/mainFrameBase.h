@@ -20,6 +20,8 @@
 #include <wx/button.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
+#include <wx/checkbox.h>
+#include <wx/spinctrl.h>
 #include <wx/treectrl.h>
 #include <wx/panel.h>
 #include <wx/frame.h>
@@ -42,6 +44,10 @@ class MyFrame1Base : public wxFrame
 		wxButton* m_btnConnect;
 		wxTextCtrl* m_textCtrl3;
 		wxButton* m_btnGenerate;
+		wxCheckBox* m_checkBox2;
+		wxCheckBox* m_checkBox3;
+		wxStaticText* m_staticText2;
+		wxSpinCtrl* m_encKey;
 		wxTreeCtrl* m_treeCtrl2;
 		wxTextCtrl* m_textCtrl4;
 		wxTextCtrl* m_textCtrl7;
@@ -60,7 +66,7 @@ class MyFrame1Base : public wxFrame
 	
 	public:
 		
-		MyFrame1Base( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Client"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1Base( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Klient"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~MyFrame1Base();
 	
