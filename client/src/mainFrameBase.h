@@ -23,6 +23,7 @@
 #include <wx/checkbox.h>
 #include <wx/spinctrl.h>
 #include <wx/treectrl.h>
+#include <wx/listbox.h>
 #include <wx/panel.h>
 #include <wx/frame.h>
 
@@ -51,6 +52,7 @@ class MyFrame1Base : public wxFrame
 		wxStaticText* m_staticText5;
 		wxStaticText* m_frameLen;
 		wxTreeCtrl* m_packetTree;
+		wxListBox* m_listBox2;
 		wxTextCtrl* m_textType;
 		wxTextCtrl* m_textNumber;
 		wxTextCtrl* m_textCount;
@@ -66,6 +68,9 @@ class MyFrame1Base : public wxFrame
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnConnect( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkGenerate( wxCommandEvent& event ) { event.Skip(); }
+		virtual void tree( wxMouseEvent& event ) { event.Skip(); }
+		virtual void tree2( wxTreeEvent& event ) { event.Skip(); }
+		virtual void aaa( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkSend( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkSendAll( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkClearPacketTree( wxCommandEvent& event ) { event.Skip(); }

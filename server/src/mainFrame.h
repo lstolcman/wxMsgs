@@ -19,6 +19,7 @@ public:
 	void setCRC(wxCommandEvent& event);
 	void setEncryption(wxCommandEvent& event);
 
+	wxString parsePacket(char* buf);
 
 private:
 	wxSocketServer *m_server;
