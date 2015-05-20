@@ -131,11 +131,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer17;
 	bSizer17 = new wxBoxSizer( wxVERTICAL );
 	
-	m_packetTree = new wxTreeCtrl( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT );
-	bSizer17->Add( m_packetTree, 1, wxEXPAND|wxRIGHT|wxLEFT, 5 );
-	
-	m_listBox2 = new wxListBox( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
-	bSizer17->Add( m_listBox2, 0, wxALL, 5 );
+	m_packetList = new wxListBox( m_panel3, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_HSCROLL ); 
+	bSizer17->Add( m_packetList, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	bSizer14->Add( bSizer17, 1, wxEXPAND, 5 );
@@ -227,12 +224,6 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	bSizer16->Add( m_btnSendAll, 0, wxALL, 5 );
 	
 	
-	bSizer16->Add( 0, 0, 3, wxEXPAND, 5 );
-	
-	m_btnClear = new wxButton( m_panel3, wxID_ANY, wxT("Wyczysc okno pakietow"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer16->Add( m_btnClear, 1, wxALL, 5 );
-	
-	
 	bSizer14->Add( bSizer16, 0, 0, 5 );
 	
 	
@@ -256,12 +247,9 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	// Connect Events
 	m_btnConnect->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
-	m_packetTree->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( MyFrame1Base::tree ), NULL, this );
-	m_packetTree->Connect( wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler( MyFrame1Base::tree2 ), NULL, this );
-	m_listBox2->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( MyFrame1Base::aaa ), NULL, this );
+	m_packetList->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( MyFrame1Base::clkListPackets ), NULL, this );
 	m_btnSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSend ), NULL, this );
 	m_btnSendAll->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSendAll ), NULL, this );
-	m_btnClear->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkClearPacketTree ), NULL, this );
 }
 
 MyFrame1Base::~MyFrame1Base()
@@ -269,11 +257,8 @@ MyFrame1Base::~MyFrame1Base()
 	// Disconnect Events
 	m_btnConnect->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
-	m_packetTree->Disconnect( wxEVT_LEFT_DOWN, wxMouseEventHandler( MyFrame1Base::tree ), NULL, this );
-	m_packetTree->Disconnect( wxEVT_COMMAND_TREE_SEL_CHANGED, wxTreeEventHandler( MyFrame1Base::tree2 ), NULL, this );
-	m_listBox2->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( MyFrame1Base::aaa ), NULL, this );
+	m_packetList->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( MyFrame1Base::clkListPackets ), NULL, this );
 	m_btnSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSend ), NULL, this );
 	m_btnSendAll->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSendAll ), NULL, this );
-	m_btnClear->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkClearPacketTree ), NULL, this );
 	
 }

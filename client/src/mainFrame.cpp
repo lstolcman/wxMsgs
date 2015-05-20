@@ -37,10 +37,6 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	}
 	*/
 
-	root = m_packetTree->AddRoot("");
-	m_listBox2->Append("asdf");
-	m_listBox2->Append("asdf");
-	m_listBox2->Append("asdf");
 }
 
 
@@ -50,49 +46,34 @@ mainFrame::~mainFrame()
 	Socket->Destroy();
 }
 
-void mainFrame::aaa(wxCommandEvent& event)
-{
-	wxString a;
-	a << event.GetSelection();
-	wxMessageBox(a);
-
-}
 void mainFrame::clkGenerate(wxCommandEvent &event)
 {
-
-	/*
-	wxString a;
-	a << "dlugosc linii: ";
-	a << m_textMessage->GetLineLength(0);
-	a << "\n";
-	a << "max dlugosc danych: ";
-	a << wxAtoi(m_frameLen->GetLabel());
-	a << "\n";
-	a << "modulo: ";
-	a << m_textMessage->GetLineLength(0) % wxAtoi(m_frameLen->GetLabel());
-	a << "\n";
-	a << "dzielenie +1: ";
-	a << m_textMessage->GetLineLength(0) / wxAtoi(m_frameLen->GetLabel())+1;
-	wxMessageBox(a);
-	*/
-
 	packets.clear();
+	m_packetList->Clear();
 
-	m_packetTree->DeleteChildren(root);
-	unsigned packetCount = m_textMessage->GetLineLength(0) / wxAtoi(m_frameLen->GetLabel()) + 1;
+	unsigned packetCount = m_textMessage->GetLineLength(0) / wxAtoi(m_frameLen->GetLabel()) + (m_textMessage->GetLineLength(0) % wxAtoi(m_frameLen->GetLabel())>0 ? 1 : 0);
 	for (unsigned i = 1; i <= packetCount; i++)
 	{
-		wxVector<wxString> tmp;
 		//create temp vars
-		wxString itNum, frameNum, lastDataSize, dataSize, ifEnc, calcCRC;
+		wxVector<wxString> tmp;
+		wxString itNum, frameNum, frameLen, lastDataSize, dataSize, ifEnc, calcCRC, tmp2, txt;
+
 		itNum << i;
 		frameNum << packetCount;
-		lastDataSize << m_textMessage->GetLineLength(0) % wxAtoi(m_frameLen->GetLabel());
+		frameLen << m_frameLen->GetLabel();
 		dataSize << packetCount - 1;
 		ifEnc = m_setEnc->GetValue() ? "T" : "N";
+		if (i < packetCount)
+		{
+			txt << m_textMessage->GetLineText(0).Mid((i - 1)*wxAtoi(frameLen), wxAtoi(frameLen));
+		}
+		else
+		{
+			txt << m_textMessage->GetLineText(0).Mid((i - 1)*wxAtoi(frameLen), m_textMessage->GetLineLength(0));
+		}
 		if (m_setCRC->GetValue())
 		{
-			calcCRC = hash(wxString::Format("iter=%i", i));
+			calcCRC = hash(txt);
 		}
 		else
 		{
@@ -103,53 +84,41 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 		tmp.push_back("D"); //type
 		tmp.push_back(itNum); //frame number
 		tmp.push_back(frameNum); //number of frames
-		if (i == packetCount)
-			tmp.push_back(lastDataSize); //data length
-		else
-			tmp.push_back(dataSize); //data length
+		lastDataSize << wxStrlen(txt);
+		tmp.push_back(lastDataSize); //data length
 		tmp.push_back(ifEnc); //encryption
 		tmp.push_back(calcCRC); //crc
-		tmp.push_back(wxString::Format("iter=%i", i)); //data
+
+		//data
+		tmp.push_back(txt);
+
 
 		//add vector to global vector
 		packets.push_back(tmp);
 
-		m_packetTree->AppendItem(root, itNum);
+		tmp2 << "Pakiet " << i;
+		m_packetList->Append(tmp2);
 	}
-
-
-
 
 
 
 
 }
 
-void mainFrame::tree(wxMouseEvent& event)
+
+
+void mainFrame::clkListPackets(wxCommandEvent& event)
 {
-	int flags;
+	wxVector<wxString> tmp = packets[event.GetSelection()];
+	m_textType->SetLabel(tmp[0]);
+	m_textNumber->SetLabel(tmp[1]);
+	m_textCount->SetLabel(tmp[2]);
+	m_textLength->SetLabel(tmp[3]);
+	m_textEnc->SetLabel(tmp[4]);
+	m_textCRC->SetLabel(tmp[5]);
+	m_textData->SetLabel(tmp[6]);
+	m_textPacket->SetLabel(tmp[0] + tmp[1] + tmp[2] + tmp[3] + tmp[4] + tmp[5] + tmp[6]);
 
-	//check mouse button click on text ctrl field
-	//wxTreeItemId item = m_packetTree->HitTest(event.GetPoint(), flags);
-	wxTreeItemId item = m_packetTree->HitTest(event.GetPosition(), flags);
-	//check if mouse hit any item
-	if (item.IsOk() && !(flags & wxTREE_HITTEST_ONITEMRIGHT))
-	{
-		//get item name and convert to int
-		int packetId = wxAtoi(m_packetTree->GetItemText(item)) - 1;
-		m_packetTree->SelectItem(item);
-		m_packetTree->SetFocusedItem(item);
-
-		wxVector<wxString> tmp = packets[packetId];
-		m_textType->SetLabel(tmp[0]);
-		m_textNumber->SetLabel(tmp[1]);
-		m_textCount->SetLabel(tmp[2]);
-		m_textLength->SetLabel(tmp[3]);
-		m_textEnc->SetLabel(tmp[4]);
-		m_textCRC->SetLabel(tmp[5]);
-		m_textData->SetLabel(tmp[6]);
-		m_textPacket->SetLabel(tmp[0] + tmp[1] + tmp[2] + tmp[3] + tmp[4] + tmp[5] + tmp[6]);
-	}
 }
 
 

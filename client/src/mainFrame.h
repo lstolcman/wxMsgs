@@ -23,8 +23,7 @@ public:
 
 	void clkSend(wxCommandEvent &event);
 	void clkGenerate(wxCommandEvent &event);
-	void tree(wxMouseEvent& event);
-	void aaa(wxCommandEvent& event);
+	void clkListPackets(wxCommandEvent& event);
 
 	wxString parsePacket(char* buf);
 	wxString hash(wxString data);
@@ -33,7 +32,6 @@ private:
 	wxSocketClient* Socket;
 	wxIPV4address addr;
 
-	wxTreeItemId root;
 
 	wxVector<wxVector<wxString>> packets;
 
