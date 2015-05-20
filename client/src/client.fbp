@@ -634,7 +634,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size"></property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_textCtrl3</property>
+                                                            <property name="name">m_textMessage</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -1470,16 +1470,16 @@
                                                 <property name="border">5</property>
                                                 <property name="flag">wxEXPAND</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxBoxSizer" expanded="0">
+                                                <object class="wxBoxSizer" expanded="1">
                                                     <property name="minimum_size"></property>
                                                     <property name="name">bSizer18</property>
                                                     <property name="orient">wxHORIZONTAL</property>
                                                     <property name="permission">none</property>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxTOP|wxBOTTOM</property>
                                                         <property name="proportion">0</property>
-                                                        <object class="wxStaticBoxSizer" expanded="0">
+                                                        <object class="wxStaticBoxSizer" expanded="1">
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">Typ</property>
                                                             <property name="minimum_size"></property>
@@ -1527,7 +1527,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl4</property>
+                                                                    <property name="name">m_textType</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -1580,11 +1580,11 @@
                                                             </object>
                                                         </object>
                                                     </object>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                                                         <property name="proportion">0</property>
-                                                        <object class="wxStaticBoxSizer" expanded="0">
+                                                        <object class="wxStaticBoxSizer" expanded="1">
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">Nr</property>
                                                             <property name="minimum_size"></property>
@@ -1632,7 +1632,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl7</property>
+                                                                    <property name="name">m_textNumber</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -1685,11 +1685,11 @@
                                                             </object>
                                                         </object>
                                                     </object>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                                                         <property name="proportion">0</property>
-                                                        <object class="wxStaticBoxSizer" expanded="0">
+                                                        <object class="wxStaticBoxSizer" expanded="1">
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">Ile</property>
                                                             <property name="minimum_size"></property>
@@ -1737,7 +1737,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl6</property>
+                                                                    <property name="name">m_textCount</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -1790,11 +1790,11 @@
                                                             </object>
                                                         </object>
                                                     </object>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                                                         <property name="proportion">0</property>
-                                                        <object class="wxStaticBoxSizer" expanded="0">
+                                                        <object class="wxStaticBoxSizer" expanded="1">
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">Dl</property>
                                                             <property name="minimum_size"></property>
@@ -1842,7 +1842,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl5</property>
+                                                                    <property name="name">m_textLength</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -1895,11 +1895,11 @@
                                                             </object>
                                                         </object>
                                                     </object>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                                                         <property name="proportion">0</property>
-                                                        <object class="wxStaticBoxSizer" expanded="0">
+                                                        <object class="wxStaticBoxSizer" expanded="1">
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">Enc</property>
                                                             <property name="minimum_size"></property>
@@ -1947,7 +1947,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl51</property>
+                                                                    <property name="name">m_textEnc</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -2000,11 +2000,11 @@
                                                             </object>
                                                         </object>
                                                     </object>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                                                         <property name="proportion">0</property>
-                                                        <object class="wxStaticBoxSizer" expanded="0">
+                                                        <object class="wxStaticBoxSizer" expanded="1">
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">CRC</property>
                                                             <property name="minimum_size"></property>
@@ -2052,7 +2052,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl511</property>
+                                                                    <property name="name">m_textCRC</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -2157,7 +2157,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_textCtrl512</property>
+                                                                    <property name="name">m_textData</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -2252,7 +2252,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size"></property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_textCtrl17</property>
+                                                    <property name="name">m_textPacket</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -2374,7 +2374,7 @@
                                                             <property name="window_extra_style"></property>
                                                             <property name="window_name"></property>
                                                             <property name="window_style"></property>
-                                                            <event name="OnButtonClick">OnSend</event>
+                                                            <event name="OnButtonClick">clkSend</event>
                                                             <event name="OnChar"></event>
                                                             <event name="OnEnterWindow"></event>
                                                             <event name="OnEraseBackground"></event>
@@ -2462,7 +2462,7 @@
                                                             <property name="window_extra_style"></property>
                                                             <property name="window_name"></property>
                                                             <property name="window_style"></property>
-                                                            <event name="OnButtonClick">OnSend</event>
+                                                            <event name="OnButtonClick">clkSendAll</event>
                                                             <event name="OnChar"></event>
                                                             <event name="OnEnterWindow"></event>
                                                             <event name="OnEraseBackground"></event>
@@ -2539,7 +2539,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size"></property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_clkClear</property>
+                                                            <property name="name">m_btnClear</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -2560,7 +2560,7 @@
                                                             <property name="window_extra_style"></property>
                                                             <property name="window_name"></property>
                                                             <property name="window_style"></property>
-                                                            <event name="OnButtonClick"></event>
+                                                            <event name="OnButtonClick">clkClearPacketTree</event>
                                                             <event name="OnChar"></event>
                                                             <event name="OnEnterWindow"></event>
                                                             <event name="OnEraseBackground"></event>
