@@ -73,7 +73,8 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 		}
 		if (m_setCRC->GetValue())
 		{
-			calcCRC = hash(txt);
+			std::hash<std::string> h;
+			calcCRC << wxString::Format("%04x", h(txt.ToStdString())).Truncate(4);
 		}
 		else
 		{
@@ -121,29 +122,41 @@ void mainFrame::clkListPackets(wxCommandEvent& event)
 
 }
 
+void mainFrame::clkSendAll(wxCommandEvent &event)
+{
+	if (Socket && Socket->IsConnected())
+	{
+		for (unsigned i = 0; i < packets.size(); i++)
+		{
+#pragma message("FIXME: not sending all packets, only first")
+			wxString txt;
+			txt << packets[i][0];
+			txt << packets[i][1];
+			txt << packets[i][2];
+			txt << packets[i][3];
+			txt << packets[i][4];
+			txt << packets[i][5];
+			txt << packets[i][6];
+
+			Socket->Write(txt.mbc_str(), wxStrlen(txt) + 1);
+		}
+		//Socket->Close();
+	}
+
+}
 
 void mainFrame::clkSend(wxCommandEvent &event)
 {
 
+
 	if (Socket && Socket->IsConnected())
 	{
-		char buf[10];
-		// Fill the arry with the numbers 0 through 9 as characters
-		char mychar = '0';
-		for (int i = 0; i < 10; i++)
+		if (m_packetList->GetSelection() >= 0)
 		{
-			buf[i] = mychar++;
+			Socket->Write(m_textPacket->GetLineText(0).mbc_str(), wxStrlen(m_textPacket->GetLineText(0)) + 1);
 		}
-
-		// Send the characters to the server
-
-		strcpy(buf, "conn\n");
-		//Socket->Write(buf, sizeof(buf));
-		wxString s = "test str";
-		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 		//Socket->Close();
 	}
-
 }
 
 void mainFrame::OnConnect(wxCommandEvent &event)
@@ -159,10 +172,12 @@ void mainFrame::OnConnect(wxCommandEvent &event)
 	}
 	else
 	{
+
 		wxString s = "R";
 		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 		Socket->Close();
 		m_btnSend->Disable();
+		m_btnSendAll->Disable();
 		m_btnGenerate->Disable();
 		m_btnConnect->SetLabelText("Polacz");
 	}
@@ -192,6 +207,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_CONNECTION\n");
 		m_btnSend->Enable();
+		m_btnSendAll->Enable();
 		m_btnGenerate->Enable();
 		m_btnConnect->SetLabelText("Rozlacz");
 		break;
@@ -211,6 +227,7 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	case wxSOCKET_LOST:
 	{
 		m_btnSend->Disable();
+		m_btnSendAll->Disable();
 		m_btnGenerate->Disable();
 		m_btnConnect->SetLabelText("Polacz");
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_LOST\n");
@@ -255,21 +272,5 @@ wxString mainFrame::parsePacket(char *buf)
 }
 
 
-wxString mainFrame::hash(wxString data)
-{
-	wxString out;
-	unsigned int hash, i;
-	for (hash = i = 0; i < wxStrlen(data); ++i)
-	{
-		hash += data.mbc_str()[i];
-		hash += (hash << 10);
-		hash ^= (hash >> 6);
-	}
-	hash += (hash << 3);
-	hash ^= (hash >> 11);
-	hash += (hash << 15);
-
-	return wxString::Format("%04x", hash).Truncate(4);
-}
 
 

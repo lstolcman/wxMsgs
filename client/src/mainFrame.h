@@ -6,9 +6,9 @@
 #include <wx/msgdlg.h>
 #include <wx/time.h>
 #include <wx/regex.h>
-
 #include <wx/vector.h>
-#include <wx/hash.h>
+
+#include <functional>
 
 
 class mainFrame : public MyFrame1Base
@@ -22,11 +22,11 @@ public:
 	void OnSocketEvent(wxSocketEvent &event);
 
 	void clkSend(wxCommandEvent &event);
+	void clkSendAll(wxCommandEvent &event);
 	void clkGenerate(wxCommandEvent &event);
 	void clkListPackets(wxCommandEvent& event);
 
 	wxString parsePacket(char* buf);
-	wxString hash(wxString data);
 
 private:
 	wxSocketClient* Socket;
