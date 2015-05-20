@@ -42,7 +42,7 @@ class MyFrame1Base : public wxFrame
 		wxStaticText* m_staticText1;
 		wxTextCtrl* m_hostname;
 		wxButton* m_btnConnect;
-		wxTextCtrl* m_textCtrl3;
+		wxTextCtrl* m_textMessage;
 		wxButton* m_btnGenerate;
 		wxCheckBox* m_setEnc;
 		wxCheckBox* m_setCRC;
@@ -51,22 +51,24 @@ class MyFrame1Base : public wxFrame
 		wxStaticText* m_staticText5;
 		wxStaticText* m_frameLen;
 		wxTreeCtrl* m_packetTree;
-		wxTextCtrl* m_textCtrl4;
-		wxTextCtrl* m_textCtrl7;
-		wxTextCtrl* m_textCtrl6;
-		wxTextCtrl* m_textCtrl5;
-		wxTextCtrl* m_textCtrl51;
-		wxTextCtrl* m_textCtrl511;
-		wxTextCtrl* m_textCtrl512;
-		wxTextCtrl* m_textCtrl17;
+		wxTextCtrl* m_textType;
+		wxTextCtrl* m_textNumber;
+		wxTextCtrl* m_textCount;
+		wxTextCtrl* m_textLength;
+		wxTextCtrl* m_textEnc;
+		wxTextCtrl* m_textCRC;
+		wxTextCtrl* m_textData;
+		wxTextCtrl* m_textPacket;
 		wxButton* m_btnSend;
 		wxButton* m_btnSendAll;
-		wxButton* m_clkClear;
+		wxButton* m_btnClear;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnConnect( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkGenerate( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnSend( wxCommandEvent& event ) { event.Skip(); }
+		virtual void clkSend( wxCommandEvent& event ) { event.Skip(); }
+		virtual void clkSendAll( wxCommandEvent& event ) { event.Skip(); }
+		virtual void clkClearPacketTree( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

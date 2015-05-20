@@ -35,8 +35,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_staticText1->Wrap( -1 );
 	bSizer3->Add( m_staticText1, 0, wxALL, 5 );
 	
-	m_setFrameLen = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 5, 20, 10 );
-	bSizer3->Add( m_setFrameLen, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
+	m_frameLen = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 5, 20, 10 );
+	bSizer3->Add( m_frameLen, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
 	bSizer51->Add( bSizer3, 0, wxEXPAND, 5 );
@@ -85,7 +85,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	// Connect Events
 	m_setCRC->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setCRC ), NULL, this );
-	m_setFrameLen->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::setFrameLen ), NULL, this );
+	m_frameLen->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::setFrameLen ), NULL, this );
 	m_setEncryption->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setEncryption ), NULL, this );
 }
 
@@ -93,7 +93,7 @@ MyFrame1Base::~MyFrame1Base()
 {
 	// Disconnect Events
 	m_setCRC->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setCRC ), NULL, this );
-	m_setFrameLen->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::setFrameLen ), NULL, this );
+	m_frameLen->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::setFrameLen ), NULL, this );
 	m_setEncryption->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( MyFrame1Base::setEncryption ), NULL, this );
 	
 }

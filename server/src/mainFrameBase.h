@@ -38,7 +38,7 @@ class MyFrame1Base : public wxFrame
 		wxTextCtrl* m_cmdBox;
 		wxCheckBox* m_setCRC;
 		wxStaticText* m_staticText1;
-		wxSpinCtrl* m_setFrameLen;
+		wxSpinCtrl* m_frameLen;
 		wxCheckBox* m_setEncryption;
 		wxStaticText* m_staticText7;
 		wxSpinCtrl* m_decKey;

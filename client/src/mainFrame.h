@@ -18,7 +18,7 @@ public:
 	void OnConnect(wxCommandEvent &event);
 	void OnSocketEvent(wxSocketEvent &event);
 
-	void OnSend(wxCommandEvent &event);
+	void clkSend(wxCommandEvent &event);
 
 	void clkGenerate(wxCommandEvent &event);
 
@@ -26,7 +26,6 @@ public:
 private:
 	wxSocketClient* Socket;
 	wxIPV4address addr;
-	wxTreeItemId  treeRoot;
 
 };
 

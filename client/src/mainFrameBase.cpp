@@ -59,8 +59,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxBoxSizer* bSizer15;
 	bSizer15 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_textCtrl3 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer15->Add( m_textCtrl3, 1, wxALL|wxEXPAND, 5 );
+	m_textMessage = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer15->Add( m_textMessage, 1, wxALL|wxEXPAND, 5 );
 	
 	m_btnGenerate = new wxButton( m_panel3, wxID_ANY, wxT("Generuj"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_btnGenerate->Enable( false );
@@ -143,8 +143,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer10;
 	sbSizer10 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Typ") ), wxVERTICAL );
 	
-	m_textCtrl4 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
-	sbSizer10->Add( m_textCtrl4, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
+	m_textType = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	sbSizer10->Add( m_textType, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	
 	bSizer18->Add( sbSizer10, 0, wxTOP|wxBOTTOM, 5 );
@@ -152,8 +152,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer9;
 	sbSizer9 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Nr") ), wxVERTICAL );
 	
-	m_textCtrl7 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
-	sbSizer9->Add( m_textCtrl7, 0, 0, 5 );
+	m_textNumber = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	sbSizer9->Add( m_textNumber, 0, 0, 5 );
 	
 	
 	bSizer18->Add( sbSizer9, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -161,8 +161,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer8;
 	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Ile") ), wxVERTICAL );
 	
-	m_textCtrl6 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
-	sbSizer8->Add( m_textCtrl6, 0, 0, 5 );
+	m_textCount = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	sbSizer8->Add( m_textCount, 0, 0, 5 );
 	
 	
 	bSizer18->Add( sbSizer8, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -170,8 +170,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer7;
 	sbSizer7 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Dl") ), wxVERTICAL );
 	
-	m_textCtrl5 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
-	sbSizer7->Add( m_textCtrl5, 0, 0, 5 );
+	m_textLength = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	sbSizer7->Add( m_textLength, 0, 0, 5 );
 	
 	
 	bSizer18->Add( sbSizer7, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -179,8 +179,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer71;
 	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Enc") ), wxVERTICAL );
 	
-	m_textCtrl51 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
-	sbSizer71->Add( m_textCtrl51, 0, 0, 5 );
+	m_textEnc = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	sbSizer71->Add( m_textEnc, 0, 0, 5 );
 	
 	
 	bSizer18->Add( sbSizer71, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -188,8 +188,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer711;
 	sbSizer711 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("CRC") ), wxVERTICAL );
 	
-	m_textCtrl511 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
-	sbSizer711->Add( m_textCtrl511, 0, 0, 5 );
+	m_textCRC = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	sbSizer711->Add( m_textCRC, 0, 0, 5 );
 	
 	
 	bSizer18->Add( sbSizer711, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -197,8 +197,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	wxStaticBoxSizer* sbSizer712;
 	sbSizer712 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Dane") ), wxVERTICAL );
 	
-	m_textCtrl512 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( -1,-1 ), 0 );
-	sbSizer712->Add( m_textCtrl512, 1, wxEXPAND, 5 );
+	m_textData = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( -1,-1 ), 0 );
+	sbSizer712->Add( m_textData, 1, wxEXPAND, 5 );
 	
 	
 	bSizer18->Add( sbSizer712, 1, wxALIGN_CENTER_VERTICAL, 5 );
@@ -206,8 +206,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	bSizer14->Add( bSizer18, 0, wxEXPAND, 5 );
 	
-	m_textCtrl17 = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer14->Add( m_textCtrl17, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
+	m_textPacket = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer14->Add( m_textPacket, 0, wxEXPAND|wxRIGHT|wxLEFT, 5 );
 	
 	wxBoxSizer* bSizer16;
 	bSizer16 = new wxBoxSizer( wxHORIZONTAL );
@@ -225,8 +225,8 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	bSizer16->Add( 0, 0, 3, wxEXPAND, 5 );
 	
-	m_clkClear = new wxButton( m_panel3, wxID_ANY, wxT("Wyczysc okno pakietow"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer16->Add( m_clkClear, 1, wxALL, 5 );
+	m_btnClear = new wxButton( m_panel3, wxID_ANY, wxT("Wyczysc okno pakietow"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer16->Add( m_btnClear, 1, wxALL, 5 );
 	
 	
 	bSizer14->Add( bSizer16, 0, 0, 5 );
@@ -252,8 +252,9 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	// Connect Events
 	m_btnConnect->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
-	m_btnSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
-	m_btnSendAll->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
+	m_btnSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSend ), NULL, this );
+	m_btnSendAll->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSendAll ), NULL, this );
+	m_btnClear->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkClearPacketTree ), NULL, this );
 }
 
 MyFrame1Base::~MyFrame1Base()
@@ -261,7 +262,8 @@ MyFrame1Base::~MyFrame1Base()
 	// Disconnect Events
 	m_btnConnect->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
-	m_btnSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
-	m_btnSendAll->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnSend ), NULL, this );
+	m_btnSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSend ), NULL, this );
+	m_btnSendAll->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSendAll ), NULL, this );
+	m_btnClear->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkClearPacketTree ), NULL, this );
 	
 }
