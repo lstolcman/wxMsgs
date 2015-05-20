@@ -67,15 +67,17 @@ void mainFrame::setEncryption(wxCommandEvent& event)
 void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 {
 	m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_CONNECTION\n");
-	if (clients >= 1)
-	{
-		m_server->Destroy();
-		return;
-	}
+
 
 	// Accept the new connection and get the socket pointer
 	wxSocketBase* sock = m_server->Accept(false);
 
+	if (clients >= 1)
+	{
+		//m_server->Destroy();
+		sock->Close();
+		return;
+	}
 	// Tell the new socket how and where to process its events
 	sock->SetEventHandler(*this, SOCKET_ID);
 	sock->SetNotify(wxSOCKET_INPUT_FLAG | wxSOCKET_LOST_FLAG);
