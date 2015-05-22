@@ -56,12 +56,11 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 	{
 		//create temp vars
 		wxVector<wxString> tmp;
-		wxString itNum, frameNum, frameLen, lastDataSize, dataSize, ifEnc, calcCRC, tmp2, txt;
+		wxString itNum, frameNum, frameLen, ifEnc, calcCRC, tmp2, txt;
 
 		itNum << i;
 		frameNum << packetCount;
 		frameLen << m_frameLen->GetLabel();
-		dataSize << packetCount - 1;
 		ifEnc = m_setEnc->GetValue() ? "T" : "N";
 		if (i < packetCount)
 		{
@@ -83,10 +82,9 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 
 		//add temp vars to vector
 		tmp.push_back("D"); //type
-		tmp.push_back(itNum); //frame number
-		tmp.push_back(frameNum); //number of frames
-		lastDataSize << wxStrlen(txt);
-		tmp.push_back(lastDataSize); //data length
+		tmp.push_back(wxString::Format("%02i", wxAtoi(itNum))); //frame number
+		tmp.push_back(wxString::Format("%02i", wxAtoi(frameNum))); //number of frames
+		tmp.push_back(wxString::Format("%02i", wxStrlen(txt))); //data length
 		tmp.push_back(ifEnc); //encryption
 		tmp.push_back(calcCRC); //crc
 
