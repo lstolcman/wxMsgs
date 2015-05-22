@@ -25,8 +25,9 @@ public:
 	void clkSendAll(wxCommandEvent &event);
 	void clkGenerate(wxCommandEvent &event);
 	void clkListPackets(wxCommandEvent& event);
+	void clkFieldChange(wxCommandEvent& event);
 
-	wxString parsePacket(char* buf);
+	void parsePacket(char* buf);
 
 private:
 	wxSocketClient* Socket;

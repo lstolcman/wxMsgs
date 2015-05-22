@@ -144,6 +144,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	sbSizer10 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Typ") ), wxVERTICAL );
 	
 	m_textType = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	m_textType->SetMaxLength( 2 ); 
 	sbSizer10->Add( m_textType, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	
@@ -153,6 +154,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	sbSizer9 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Nr") ), wxVERTICAL );
 	
 	m_textNumber = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	m_textNumber->SetMaxLength( 2 ); 
 	sbSizer9->Add( m_textNumber, 0, 0, 5 );
 	
 	
@@ -162,6 +164,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Ile") ), wxVERTICAL );
 	
 	m_textCount = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	m_textCount->SetMaxLength( 2 ); 
 	sbSizer8->Add( m_textCount, 0, 0, 5 );
 	
 	
@@ -171,6 +174,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	sbSizer7 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Dl") ), wxVERTICAL );
 	
 	m_textLength = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	m_textLength->SetMaxLength( 2 ); 
 	sbSizer7->Add( m_textLength, 0, 0, 5 );
 	
 	
@@ -180,6 +184,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( m_panel3, wxID_ANY, wxT("Enc") ), wxVERTICAL );
 	
 	m_textEnc = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 25,-1 ), 0 );
+	m_textEnc->SetMaxLength( 2 ); 
 	sbSizer71->Add( m_textEnc, 0, 0, 5 );
 	
 	
@@ -190,6 +195,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	sbSizer711->SetMinSize( wxSize( 50,-1 ) ); 
 	m_textCRC = new wxTextCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 40,-1 ), 0 );
+	m_textCRC->SetMaxLength( 4 ); 
 	sbSizer711->Add( m_textCRC, 0, 0, 5 );
 	
 	
@@ -248,6 +254,13 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_btnConnect->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
 	m_packetList->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( MyFrame1Base::clkListPackets ), NULL, this );
+	m_textType->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textNumber->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textCount->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textLength->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textEnc->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textCRC->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textData->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
 	m_btnSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSend ), NULL, this );
 	m_btnSendAll->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSendAll ), NULL, this );
 }
@@ -258,6 +271,13 @@ MyFrame1Base::~MyFrame1Base()
 	m_btnConnect->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::OnConnect ), NULL, this );
 	m_btnGenerate->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkGenerate ), NULL, this );
 	m_packetList->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( MyFrame1Base::clkListPackets ), NULL, this );
+	m_textType->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textNumber->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textCount->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textLength->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textEnc->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textCRC->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
+	m_textData->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( MyFrame1Base::clkFieldChange ), NULL, this );
 	m_btnSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSend ), NULL, this );
 	m_btnSendAll->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1Base::clkSendAll ), NULL, this );
 	

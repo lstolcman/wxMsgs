@@ -1508,7 +1508,7 @@
                                                                     <property name="max_size"></property>
                                                                     <property name="maximize_button">0</property>
                                                                     <property name="maximum_size"></property>
-                                                                    <property name="maxlength"></property>
+                                                                    <property name="maxlength">2</property>
                                                                     <property name="min_size"></property>
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
@@ -1557,7 +1557,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>
@@ -1613,7 +1613,7 @@
                                                                     <property name="max_size"></property>
                                                                     <property name="maximize_button">0</property>
                                                                     <property name="maximum_size"></property>
-                                                                    <property name="maxlength"></property>
+                                                                    <property name="maxlength">2</property>
                                                                     <property name="min_size"></property>
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
@@ -1662,7 +1662,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>
@@ -1718,7 +1718,7 @@
                                                                     <property name="max_size"></property>
                                                                     <property name="maximize_button">0</property>
                                                                     <property name="maximum_size"></property>
-                                                                    <property name="maxlength"></property>
+                                                                    <property name="maxlength">2</property>
                                                                     <property name="min_size"></property>
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
@@ -1767,7 +1767,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>
@@ -1823,7 +1823,7 @@
                                                                     <property name="max_size"></property>
                                                                     <property name="maximize_button">0</property>
                                                                     <property name="maximum_size"></property>
-                                                                    <property name="maxlength"></property>
+                                                                    <property name="maxlength">2</property>
                                                                     <property name="min_size"></property>
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
@@ -1872,7 +1872,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>
@@ -1928,7 +1928,7 @@
                                                                     <property name="max_size"></property>
                                                                     <property name="maximize_button">0</property>
                                                                     <property name="maximum_size"></property>
-                                                                    <property name="maxlength"></property>
+                                                                    <property name="maxlength">2</property>
                                                                     <property name="min_size"></property>
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
@@ -1977,7 +1977,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>
@@ -2033,7 +2033,7 @@
                                                                     <property name="max_size"></property>
                                                                     <property name="maximize_button">0</property>
                                                                     <property name="maximum_size"></property>
-                                                                    <property name="maxlength"></property>
+                                                                    <property name="maxlength">4</property>
                                                                     <property name="min_size"></property>
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
@@ -2082,7 +2082,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>
@@ -2187,7 +2187,7 @@
                                                                     <event name="OnRightUp"></event>
                                                                     <event name="OnSetFocus"></event>
                                                                     <event name="OnSize"></event>
-                                                                    <event name="OnText"></event>
+                                                                    <event name="OnText">clkFieldChange</event>
                                                                     <event name="OnTextEnter"></event>
                                                                     <event name="OnTextMaxLen"></event>
                                                                     <event name="OnTextURL"></event>

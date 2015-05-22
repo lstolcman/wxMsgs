@@ -66,6 +66,7 @@ class MyFrame1Base : public wxFrame
 		virtual void OnConnect( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkGenerate( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkListPackets( wxCommandEvent& event ) { event.Skip(); }
+		virtual void clkFieldChange( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkSend( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clkSendAll( wxCommandEvent& event ) { event.Skip(); }
 		

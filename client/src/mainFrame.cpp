@@ -22,21 +22,6 @@ mainFrame::mainFrame(wxWindow *parent) : MyFrame1Base(parent)
 	Socket->Notify(true);
 
 
-	/*
-	wxRegEx r;
-	wxString regula = "O([TN])([TN])([0-9]{2})";
-	wxString s = "OTT09";
-
-	r.Compile(regula);
-	if (r.Matches(s))
-	{
-	m_cmdBox->AppendText(r.GetMatch(s, 0) + "\n");
-	m_cmdBox->AppendText(r.GetMatch(s, 1) + "\n");
-	m_cmdBox->AppendText(r.GetMatch(s, 2) + "\n");
-	m_cmdBox->AppendText(r.GetMatch(s, 3) + "\n");
-	}
-	*/
-
 }
 
 
@@ -45,6 +30,24 @@ mainFrame::~mainFrame()
 {
 	Socket->Destroy();
 }
+
+void mainFrame::clkFieldChange(wxCommandEvent &event)
+{
+	wxVector<wxString> tmp = packets[event.GetSelection()];
+
+	m_textPacket->Clear();
+
+	wxString textType = m_textType->GetLineText(0);
+	wxString textNumber = m_textNumber->GetLineText(0);
+	wxString textCount = m_textCount->GetLineText(0);
+	wxString textLength = m_textLength->GetLineText(0);
+	wxString textEnc = m_textEnc->GetLineText(0);
+	wxString textCRC = m_textCRC->GetLineText(0);
+	wxString textData = m_textData->GetLineText(0);
+	m_textPacket->SetLabel(textType + textNumber + textCount + textLength + textEnc + textCRC + textData);
+
+}
+
 
 void mainFrame::clkGenerate(wxCommandEvent &event)
 {
@@ -98,8 +101,6 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 		tmp2 << "Pakiet " << i;
 		m_packetList->Append(tmp2);
 	}
-
-
 
 
 }
@@ -159,19 +160,19 @@ void mainFrame::clkSend(wxCommandEvent &event)
 
 void mainFrame::OnConnect(wxCommandEvent &event)
 {
+	wxString s;
 	addr.Hostname(m_hostname->GetValue());
 	addr.Service(3000);
 
 	if (Socket->IsDisconnected())
 	{
+		s = "P";
 		Socket->Connect(addr, true);
-		wxString s = "P";
 		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 	}
 	else
 	{
-
-		wxString s = "R";
+		s = "R";
 		Socket->Write(s.mbc_str(), wxStrlen(s) + 1);
 		Socket->Close();
 		m_btnSend->Disable();
@@ -179,14 +180,6 @@ void mainFrame::OnConnect(wxCommandEvent &event)
 		m_btnGenerate->Disable();
 		m_btnConnect->SetLabelText("Polacz");
 	}
-
-
-	if (Socket->IsClosed()) m_cmdBox->AppendText("isClosed\n");
-	if (Socket->IsConnected()) m_cmdBox->AppendText("isConnected\n");
-	if (Socket->IsDisconnected()) m_cmdBox->AppendText("isDisconnected\n");
-	if (Socket->IsInitialized()) m_cmdBox->AppendText("isInitialized\n");
-	if (Socket->IsOk()) m_cmdBox->AppendText("isOk\n");
-
 
 }
 
@@ -214,7 +207,6 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 	{
 		sock->Read(buf, sizeof(buf));
 
-
 		parsePacket(buf);
 
 		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " wxSOCKET_INPUT: " + wxString(buf) + "\n");
@@ -237,36 +229,37 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 
 
 
-wxString mainFrame::parsePacket(char *buf)
+void mainFrame::parsePacket(char *buf)
 {
 	wxRegEx r;
-
 	wxString sbuf = wxString::FromUTF8(buf);
-
-	wxString regula = "O([TN])([TN])([0-9]{2})";
 
 	r.Compile("O([TN])([TN])([0-9]{2})");
 	if (r.Matches(sbuf))
 	{
-		if (r.GetMatch(sbuf, 1) == "T") m_setEnc->Set3StateValue(wxCHK_CHECKED);
-		else m_setEnc->Set3StateValue(wxCHK_UNCHECKED);
+		if (r.GetMatch(sbuf, 1) == "T")
+		{
+			m_setEnc->Set3StateValue(wxCHK_CHECKED);
+		}
+		else
+		{
+			m_setEnc->Set3StateValue(wxCHK_UNCHECKED);
+		}
 
-		if (r.GetMatch(sbuf, 2) == "T") m_setCRC->Set3StateValue(wxCHK_CHECKED);
-		else m_setCRC->Set3StateValue(wxCHK_UNCHECKED);
+		if (r.GetMatch(sbuf, 2) == "T")
+		{
+			m_setCRC->Set3StateValue(wxCHK_CHECKED);
+		}
+		else
+		{
+			m_setCRC->Set3StateValue(wxCHK_UNCHECKED);
+		}
 
 		int len = wxAtoi(r.GetMatch(sbuf, 3));
 		m_frameLen->SetLabel(wxString::Format("%i", len));
 
 	}
 
-
-	wxString msg;
-	msg.Alloc(20);
-
-	msg = "U";
-
-
-	return msg;
 }
 
 
