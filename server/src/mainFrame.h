@@ -5,6 +5,9 @@
 #include <wx/socket.h>
 #include <wx/msgdlg.h>
 #include <wx/regex.h>
+#include <list>
+#include <iostream>
+#include <functional>
 
 class mainFrame : public MyFrame1Base
 {
@@ -32,7 +35,7 @@ private:
 	bool encryption;
 	bool crc;
 
-	wxVector<wxVector<wxString>> packets;
+	std::list<wxVector<wxString>> packets;
 
 };
 
