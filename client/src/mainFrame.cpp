@@ -65,6 +65,7 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 		frameNum << packetCount;
 		frameLen << m_frameLen->GetLabel();
 		ifEnc = m_setEnc->GetValue() ? "T" : "N";
+
 		if (i < packetCount)
 		{
 			txt << m_textMessage->GetLineText(0).Mid((i - 1)*wxAtoi(frameLen), wxAtoi(frameLen));
@@ -73,6 +74,17 @@ void mainFrame::clkGenerate(wxCommandEvent &event)
 		{
 			txt << m_textMessage->GetLineText(0).Mid((i - 1)*wxAtoi(frameLen), m_textMessage->GetLineLength(0));
 		}
+
+		// encode text by given key (Caesar cipher)
+		if (m_setEnc->GetValue())
+		{
+			for (auto &i : txt)
+			{
+				int key = m_encKey->GetValue();
+				i = char(32 + (int(i) - 32 + key) % 95);
+			}
+		}
+
 		if (m_setCRC->GetValue())
 		{
 			std::hash<std::string> h;

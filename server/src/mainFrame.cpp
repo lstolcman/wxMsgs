@@ -200,9 +200,15 @@ void mainFrame::parsePacket(wxSocketBase *sock, char *buf)
 		tmp.push_back(wxString::Format("%02i", pLen)); //data length
 		tmp.push_back(pEnc ? "T" : "N"); //encryption
 		tmp.push_back(pCRC); //crc
-		tmp.push_back(pData); //data
-
 		calcCRC << wxString::Format("%04x", hash(pData.ToStdString())).Truncate(4);
+
+		for (auto &i : pData)
+		{
+			int key = m_decKey->GetValue();
+			i = char(32 + (int(i) - 32 + 95 - key) % 95);
+		}
+
+		tmp.push_back(pData); //data
 
 		if (pCRC.compare(calcCRC) != 0)
 		{
@@ -236,7 +242,7 @@ void mainFrame::parsePacket(wxSocketBase *sock, char *buf)
 		}
 
 		//then, decode message
-		if (allPackets && (correctCRC || !m_setCRC->GetValue()) && (correctEnc || !m_setEncryption->GetValue()))
+		if (allPackets && (correctCRC || !m_setCRC->GetValue()))
 		{
 			m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Zdekodowany pakiet: ");
 			for (auto i : packets)
@@ -244,6 +250,13 @@ void mainFrame::parsePacket(wxSocketBase *sock, char *buf)
 				m_cmdBox->AppendText(i[6]);
 			}
 			m_cmdBox->AppendText("\n");
+		}
+		else
+		{
+			if (!correctCRC)
+			{
+				m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Blad CRC");
+			}
 		}
 
 	}

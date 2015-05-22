@@ -35,7 +35,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_staticText1->Wrap( -1 );
 	bSizer3->Add( m_staticText1, 0, wxALL, 5 );
 	
-	m_frameLen = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 20, 3 );
+	m_frameLen = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 30, 5 );
 	bSizer3->Add( m_frameLen, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
@@ -51,7 +51,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_staticText7->Wrap( -1 );
 	bSizer16->Add( m_staticText7, 0, wxALL, 5 );
 	
-	m_decKey = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 26, 0 );
+	m_decKey = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -90, 90, 0 );
 	bSizer16->Add( m_decKey, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	

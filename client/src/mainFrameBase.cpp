@@ -102,7 +102,7 @@ MyFrame1Base::MyFrame1Base( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_staticText2->Wrap( -1 );
 	bSizer31->Add( m_staticText2, 0, wxALL, 5 );
 	
-	m_encKey = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 26, 0 );
+	m_encKey = new wxSpinCtrl( m_panel3, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -90, 90, 0 );
 	bSizer31->Add( m_encKey, 0, wxALIGN_CENTER_VERTICAL|wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	
