@@ -236,9 +236,8 @@ void mainFrame::parsePacket(wxSocketBase *sock, char *buf)
 		}
 
 		//then, decode message
-		if (allPackets && correctCRC && correctEnc)
+		if (allPackets && (correctCRC || !m_setCRC->GetValue()) && (correctEnc || !m_setEncryption->GetValue()))
 		{
-#pragma message("TODO: CRC, encoding check")
 			m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Zdekodowany pakiet: ");
 			for (auto i : packets)
 			{
