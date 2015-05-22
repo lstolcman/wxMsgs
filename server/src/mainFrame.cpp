@@ -89,6 +89,8 @@ void mainFrame::OnConnectionEvent(wxSocketEvent &event)
 	m_clConn->GetLabelText().ToULong(&clients);
 	++clients;
 	m_clConn->SetLabelText(wxString::Format("%i", clients));
+
+	packets.clear();
 }
 
 
@@ -112,17 +114,8 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 		
 
 
-		wxString str = parsePacket(buf);
+		parsePacket(sock, buf);
 
-
-		// Write it back
-		sock->Write(str.mbc_str(), wxStrlen(str)+1);
-		//sock->Write(buf, sizeof(buf));
-
-		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Sent: " + wxString(str) + "\n");
-
-		// We are done with the socket, destroy it
-		//sock->Destroy();
 
 		break;
 	}
@@ -144,15 +137,18 @@ void mainFrame::OnSocketEvent(wxSocketEvent& event)
 
 
 
-wxString mainFrame::parsePacket(char *buf)
+void mainFrame::parsePacket(wxSocketBase *sock, char *buf)
 {
+	wxRegEx connect, data;
 	wxString sbuf = wxString::FromUTF8(buf);
 	wxString msg;
-	msg.Alloc(200);
 
-	msg = "U";
-	
-	if (sbuf == "P")
+	msg.Alloc(20);
+	connect.Compile("P.*");
+	data.Compile("D([0-9]{2})([0-9]{2})([0-9]{2})([TN])([a-fA-F0-9]{4})(.{"+wxString::Format("%i", m_frameLen->GetValue())+"})");
+
+	//connect packet incoming
+	if (connect.Matches(sbuf))
 	{
 		if (clients > 1)
 		{
@@ -160,17 +156,23 @@ wxString mainFrame::parsePacket(char *buf)
 		}
 		else
 		{
-			wxString tmp;
 			msg = "O";
-			tmp = encryption ? "T" : "N";
-			msg += tmp;
-			tmp = crc ? "T" : "N";
-			msg += tmp;
-			tmp = wxString::Format("%02i", m_frameLen->GetValue());
-			msg += tmp;
+			msg += encryption ? "T" : "N";
+			msg += crc ? "T" : "N";
+			msg += wxString::Format("%02i", m_frameLen->GetValue());
 		}
+
+		sock->Write(msg.mbc_str(), wxStrlen(msg) + 1);
+		//sock->Write(buf, sizeof(buf));
+
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " Sent: " + msg + "\n");
 	}
 
-	return msg;
+	//data packet incoming
+	if (data.Matches(sbuf))
+	{
+		m_cmdBox->AppendText(wxDateTime::Now().Format("%X") + " AAAAAAAAA" + "\n");
+	}
+
 }
 

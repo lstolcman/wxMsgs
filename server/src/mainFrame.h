@@ -4,6 +4,7 @@
 
 #include <wx/socket.h>
 #include <wx/msgdlg.h>
+#include <wx/regex.h>
 
 class mainFrame : public MyFrame1Base
 {
@@ -12,14 +13,14 @@ public:
 	~mainFrame();
 
 
-	void OnConnectionEvent(wxSocketEvent &event);
-	void OnSocketEvent(wxSocketEvent &event);
+	void OnConnectionEvent(wxSocketEvent&);
+	void OnSocketEvent(wxSocketEvent&);
 
-	void setFrameLen(wxCommandEvent& event);
-	void setCRC(wxCommandEvent& event);
-	void setEncryption(wxCommandEvent& event);
+	void setFrameLen(wxCommandEvent&);
+	void setCRC(wxCommandEvent&);
+	void setEncryption(wxCommandEvent&);
 
-	wxString parsePacket(char* buf);
+	void parsePacket(wxSocketBase*, char*);
 
 private:
 	wxSocketServer *m_server;
@@ -31,6 +32,7 @@ private:
 	bool encryption;
 	bool crc;
 
+	wxVector<wxVector<wxString>> packets;
 
 };
 

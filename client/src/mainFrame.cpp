@@ -263,7 +263,7 @@ wxString mainFrame::parsePacket(char *buf)
 
 
 	wxString msg;
-	msg.Alloc(200);
+	msg.Alloc(20);
 
 	msg = "U";
 
