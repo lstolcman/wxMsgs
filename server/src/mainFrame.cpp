@@ -145,7 +145,7 @@ void mainFrame::parsePacket(wxSocketBase *sock, char *buf)
 
 	msg.Alloc(20);
 	connect.Compile("P.*");
-	data.Compile("D([0-9]{2})([0-9]{2})([0-9]{2})([TN])([a-fA-F0-9]{4})(.{"+wxString::Format("%i", m_frameLen->GetValue())+"})");
+	data.Compile("D([0-9]{2})([0-9]{2})([0-9]{2})([TN])([a-fA-F0-9]{4})(.*)");
 
 	//connect packet incoming
 	if (connect.Matches(sbuf))
